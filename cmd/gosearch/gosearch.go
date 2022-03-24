@@ -5,7 +5,6 @@ import (
 	"net"
 	"net/http"
 	"time"
-    "flag"
 
 	"gosearch/pkg/api"
 	"gosearch/pkg/crawler"
@@ -36,10 +35,11 @@ type gosearch struct {
 }
 
 func main() {
-    var nFlag = flag.String("s", "Seacrh string", "Enter search value")
-    flag.Parse()
+    // var nFlag = flag.String("s", "Seacrh string", "Enter search value")
+    // flag.Parse()
 	server := new()
-	server.init(*nFlag)
+	// server.init(*nFlag)
+	server.init()
 	server.run()
 }
 
@@ -59,7 +59,7 @@ func new() *gosearch {
 }
 
 // init производит сканирование сайтов и индексирование данных.
-func (gs *gosearch) init(searchString string) {
+func (gs *gosearch) init() {
 	log.Println("Сканирование сайтов")
 	chDocs, chErr := gs.scanner.BatchScan(gs.sites, 2, 10)
 	go func() {
@@ -81,9 +81,9 @@ func (gs *gosearch) init(searchString string) {
 		}
 		log.Println("Сканирование сайтов завершено")
 
-        log.Println("По запросу", searchString, "найдены следующие ссылки:")
-        searchResults := gs.engine.Search(searchString)
-        log.Println(searchResults)
+        // log.Println("По запросу", searchString, "найдены следующие ссылки:")
+        // searchResults := gs.engine.Search(searchString)
+        // log.Println(searchResults)
 	}()
 
 }
