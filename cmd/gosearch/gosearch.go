@@ -1,11 +1,11 @@
 package main
 
 import (
-    "log"
+	"log"
 	"net"
 	"net/http"
 	"time"
-    "flag"
+	"flag"
 
 	"gosearch/pkg/api"
 	"gosearch/pkg/crawler"
@@ -36,8 +36,8 @@ type gosearch struct {
 }
 
 func main() {
-    var nFlag = flag.String("s", "Seacrh string", "Enter search value")
-    flag.Parse()
+	var nFlag = flag.String("s", "Seacrh string", "Enter search value")
+	flag.Parse()
 	server := new()
 	server.init(*nFlag)
 	server.run()
@@ -81,9 +81,9 @@ func (gs *gosearch) init(searchString string) {
 		}
 		log.Println("Сканирование сайтов завершено")
 
-        log.Println("По запросу", searchString, "найдены следующие ссылки:")
-        searchResults := gs.engine.Search(searchString)
-        log.Println(searchResults)
+		log.Println("По запросу", searchString, "найдены следующие ссылки:")
+		searchResults := gs.engine.Search(searchString)
+		log.Println(searchResults)
 	}()
 
 }
